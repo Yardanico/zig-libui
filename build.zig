@@ -10,8 +10,8 @@ pub fn build(b: *Builder) void {
 
     // TODO: Add support for Windows + macOS
     const c_system_libs = [_][]const u8{
-        "c", "glib-2.0", "gtk-3", "gdk-3", "pango-1.0",
-        "cairo", "cairo-gobject", "gobject-2.0"
+        "c", "glib-2.0", "gtk-3", 
+        "gdk-3", "pango-1.0", "gobject-2.0"
     };
 
     for (c_system_libs) |lib| {

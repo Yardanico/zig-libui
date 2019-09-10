@@ -117,25 +117,27 @@ pub fn makeNumbersPage() [*c]c.uiControl {
 pub var mainwin: ?*c.uiWindow = undefined;
 
 extern fn onOpenFileClicked(b: ?*c.uiButton, data: ?*c_void) void {
-    var entry: ?*c.uiEntry = @ptrCast(?*c.uiEntry, data);
-    var filename: [*c]u8 = undefined;
-    filename = c.uiOpenFile(mainwin);
+    var entry = @ptrCast(?*c.uiEntry, data);
+    var filename = c.uiOpenFile(mainwin);
+    
     if (filename == null) {
         c.uiEntrySetText(entry, c"(cancelled)");
         return;
     }
+
     c.uiEntrySetText(entry, filename);
     c.uiFreeText(filename);
 }
 
 extern fn onSaveFileClicked(b: ?*c.uiButton, data: ?*c_void) void {
-    var entry: ?*c.uiEntry = @ptrCast(?*c.uiEntry, data);
-    var filename: [*c]u8 = undefined;
-    filename = c.uiSaveFile(mainwin);
+    var entry = @ptrCast(?*c.uiEntry, data);
+    var filename = c.uiSaveFile(mainwin);
+
     if (filename == null) {
         c.uiEntrySetText(entry, c"(cancelled)");
         return;
     }
+
     c.uiEntrySetText(entry, filename);
     c.uiFreeText(filename);
 }
