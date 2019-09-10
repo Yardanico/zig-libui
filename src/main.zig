@@ -18,7 +18,7 @@ extern fn onShouldQuit(data: ?*c_void) c_int {
     return 1;
 }
 
-pub fn makeBasicControlsPage() [*c]c.uiControl {
+fn makeBasicControlsPage() [*c]c.uiControl {
     var vbox = c.uiNewVerticalBox();
     c.uiBoxSetPadded(vbox, 1);
 
@@ -46,9 +46,9 @@ pub fn makeBasicControlsPage() [*c]c.uiControl {
     return toUiControl(vbox);
 }
 
-pub var spinbox: ?*c.uiSpinbox = undefined;
-pub var slider: ?*c.uiSlider = undefined;
-pub var pbar: ?*c.uiProgressBar = undefined;
+var spinbox: ?*c.uiSpinbox = undefined;
+var slider: ?*c.uiSlider = undefined;
+var pbar: ?*c.uiProgressBar = undefined;
 
 extern fn onSpinboxChanged(s: ?*c.uiSpinbox, data: ?*c_void) void {
     c.uiSliderSetValue(slider, c.uiSpinboxValue(s));
@@ -60,7 +60,7 @@ extern fn onSliderChanged(s: ?*c.uiSlider, data: ?*c_void) void {
     c.uiProgressBarSetValue(pbar, c.uiSliderValue(s));
 }
 
-pub fn makeNumbersPage() [*c]c.uiControl {
+fn makeNumbersPage() [*c]c.uiControl {
     var hbox = c.uiNewHorizontalBox();
     c.uiBoxSetPadded(hbox, 1);
 
@@ -114,7 +114,7 @@ pub fn makeNumbersPage() [*c]c.uiControl {
     return toUiControl(hbox);
 }
 
-pub var mainwin: ?*c.uiWindow = undefined;
+var mainwin: ?*c.uiWindow = undefined;
 
 extern fn onOpenFileClicked(b: ?*c.uiButton, data: ?*c_void) void {
     var entry = @ptrCast(?*c.uiEntry, data);
@@ -155,7 +155,7 @@ fn toUiControl(data: var) [*c]c.uiControl {
     return @ptrCast([*c]c.uiControl, @alignCast(@alignOf(c.uiControl), data));
 }
 
-pub fn makeDataChoosersPage() [*c]c.uiControl {
+fn makeDataChoosersPage() [*c]c.uiControl {
     var hbox = c.uiNewHorizontalBox();
     c.uiBoxSetPadded(hbox, 1);
 
@@ -206,7 +206,7 @@ pub fn makeDataChoosersPage() [*c]c.uiControl {
     return toUiControl(hbox);
 }
 
-pub export fn main() i32 {
+pub fn main() u8 {
     var options = c.uiInitOptions{ .Size = 0 };
     var err = c.uiInit(&options);
 
